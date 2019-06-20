@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
 
     void PlayerMovement()
     {
-        //vel = Vector3.zero;
+        vel = Vector3.zero;
 
         axisH = Input.GetAxis("Horizontal");
         axisV = Input.GetAxis("Vertical");
