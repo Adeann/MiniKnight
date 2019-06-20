@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 
-public class DungeonEntrance : MonoBehaviour
+public class DungeonEntrance : MonoBehaviour 
 {
     [SerializeField] int SceneID;
     // Start is called before the first frame update
