@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 vel;
     private Vector3 dir;
 
+    private Vector3 forwardRay;
+
     private bool canAttack = true;
     private bool isBlocking = false;
 
@@ -35,10 +37,15 @@ public class PlayerController : MonoBehaviour
     {
         PlayerMovement();
         PlayAnimations();
+
+        ForwardRayCast();
+        Debug.DrawRay(new Vector3(rb.transform.position.x, .5f, rb.transform.position.z), forwardRay, Color.green);
     }
 
     private void FixedUpdate()
     {
+        vel.y = rb.velocity.y;
+
         rb.velocity = vel;       
     }
 
@@ -52,27 +59,32 @@ public class PlayerController : MonoBehaviour
         if (axisH > 0 || axisV > 0)
         {
             speed = Mathf.Clamp(speed += .02f, 0, maxSpeed);
-        } else if (axisH < 0 || axisV < 0) {
+        }
+        else if (axisH < 0 || axisV < 0) {
             speed = Mathf.Clamp(speed += .02f, 0, maxSpeed);
-        } else
+        }
+        else
         {
             speed = 0;
         }
 
-        axisH *= speed;
-        axisV *= speed;
+      //  axisH *= speed;
+      //  axisV *= speed;
 
         vel = new Vector3(axisH, 0, axisV);
+        vel.Normalize();
+        vel *= speed;
 
-        dir = rb.transform.forward;
-
-        Quaternion lookRotation = Quaternion.LookRotation(dir + vel);
+        Quaternion lookRotation = Quaternion.LookRotation(rb.transform.forward + vel);
 
         trans.rotation = Quaternion.Slerp(rb.transform.rotation, lookRotation, rotSpeed);
-
-
     }
 
+    void ForwardRayCast()
+    {
+        forwardRay = rb.transform.forward * 2.0f;
+        forwardRay.y = .5f;
+    }
     void AttackOne()
     {
         anim.SetTrigger("isAttackingOne");
