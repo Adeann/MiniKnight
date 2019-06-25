@@ -22,26 +22,29 @@ public class PlayerController : MonoBehaviour
     private Vector3 vel;
     private Vector3 dir;
 
-    private Vector3 forwardRay;
+    public Vector3 forwardRay;
+    public Vector3 playerPos;
 
     private bool canAttack = true;
     private bool isBlocking = false;
 
     void Start()
     {
+        playerPos = rb.transform.position;
         speed = 0;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         PlayerMovement();
         PlayAnimations();
 
         ForwardRayCast();
-        Debug.DrawRay(new Vector3(rb.transform.position.x, .5f, rb.transform.position.z), forwardRay, Color.green);
+        //Debug.DrawRay(new Vector3(rb.transform.position.x, .5f, rb.transform.position.z), forwardRay, Color.green);
     }
 
+    // Do anything Physics related here
     private void FixedUpdate()
     {
         vel.y = rb.velocity.y;
@@ -68,9 +71,6 @@ public class PlayerController : MonoBehaviour
             speed = 0;
         }
 
-      //  axisH *= speed;
-      //  axisV *= speed;
-
         vel = new Vector3(axisH, 0, axisV);
         vel.Normalize();
         vel *= speed;
@@ -82,9 +82,15 @@ public class PlayerController : MonoBehaviour
 
     void ForwardRayCast()
     {
+        //player position for raycast info
+        playerPos = rb.transform.position;
+        playerPos.y = rb.transform.position.y + 0.25f;
+
         forwardRay = rb.transform.forward * 2.0f;
-        forwardRay.y = .5f;
+        forwardRay.y = rb.transform.position.y + 0.25f;
     }
+
+
     void AttackOne()
     {
         anim.SetTrigger("isAttackingOne");

@@ -218,7 +218,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6043673b04be6214fa2d6087d7b176c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UICont: {fileID: 0}
+  objName: Dungeon Door
+  player: {fileID: 393238317}
   SceneID: 0
+--- !u!114 &393238317 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1415550774124430102, guid: 8025e1323d7b1ad49a855bb72b81295f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1415550772706184121}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4301b31e16350e54e8de79d3a7c98e91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &479626000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -281,6 +296,11 @@ PrefabInstance:
     - target: {fileID: 4534656370318982, guid: 8dfd1c3242055c943a88942e00e8c78c, type: 3}
       propertyPath: m_LocalScale.y
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 65026994466470198, guid: 8dfd1c3242055c943a88942e00e8c78c,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8dfd1c3242055c943a88942e00e8c78c, type: 3}
